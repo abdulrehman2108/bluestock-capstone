@@ -2,42 +2,50 @@
 
 ## Project Overview
 
-Bluestock Mutual Fund Analytics Warehouse is a financial data engineering and analytics project designed to process, clean, transform, and analyze mutual fund datasets using a star schema warehouse architecture.
+Bluestock Mutual Fund Analytics Warehouse is an end-to-end financial data engineering and analytics project designed to process, clean, transform, and analyze mutual fund datasets using a star schema warehouse architecture.
 
 The project focuses on:
 
-* Mutual fund performance analytics
 * NAV trend analysis
+* Mutual fund performance analytics
 * Investor transaction analysis
-* AUM-based fund insights
+* SIP inflow analysis
+* Risk-adjusted fund comparison
+* Sector allocation analysis
 * SQL-based business intelligence reporting
 
-The complete pipeline includes:
+The project workflow includes:
 
 * Data ingestion
 * Data cleaning and transformation
-* Warehouse schema modeling
-* ETL loading
+* ETL pipeline creation
+* Star schema warehouse modeling
+* MySQL data loading
+* Exploratory Data Analysis (EDA)
 * Analytical SQL querying
 
 ---
 
 # Tech Stack
 
-| Technology       | Purpose                           |
-| ---------------- | --------------------------------- |
-| Python           | Data processing and ETL           |
-| Pandas           | Data cleaning and transformation  |
-| MySQL            | Data warehouse storage            |
-| SQLAlchemy       | Python ↔ MySQL integration        |
-| Jupyter Notebook | Exploratory analysis and cleaning |
-| SQL              | Analytical querying               |
+| Technology       | Purpose                        |
+| ---------------- | ------------------------------ |
+| Python           | Data processing & ETL          |
+| Pandas           | Data cleaning & transformation |
+| NumPy            | Numerical computations         |
+| Matplotlib       | Data visualization             |
+| Seaborn          | Statistical visualization      |
+| Plotly           | Interactive visualizations     |
+| MySQL            | Data warehouse storage         |
+| SQLAlchemy       | Python ↔ MySQL integration     |
+| Jupyter Notebook | EDA & analysis                 |
+| SQL              | Analytical querying            |
 
 ---
 
 # Project Architecture
 
-```text
+```text id="tbdqqq"
 Raw CSV Data
       ↓
 Data Cleaning & Transformation (Pandas)
@@ -48,7 +56,7 @@ ETL Pipeline
       ↓
 MySQL Star Schema Warehouse
       ↓
-Analytical SQL Queries
+EDA & Analytical SQL Queries
       ↓
 Dashboard / Reporting Layer
 ```
@@ -74,12 +82,29 @@ Dashboard / Reporting Layer
 # Key Features
 
 * Data cleaning and normalization using Pandas
-* Time-series NAV analytics
-* Investor transaction analytics
-* Mutual fund performance benchmarking
-* Risk-adjusted fund analysis
-* Star schema warehouse design
+* Historical NAV trend analysis
+* SIP inflow trend analysis
+* Investor demographics analysis
+* Geographic investment distribution analysis
+* Correlation analysis between mutual funds
+* Sector allocation analytics
 * SQL-based KPI generation
+* Star schema warehouse implementation
+
+---
+
+# Exploratory Data Analysis (EDA)
+
+The project includes:
+
+* 15+ visualizations
+* Plotly interactive charts
+* Seaborn statistical plots
+* Time-series NAV analysis
+* Correlation heatmaps
+* Investor demographic analysis
+* SIP inflow analysis
+* Sector allocation donut charts
 
 ---
 
@@ -94,12 +119,13 @@ The warehouse supports:
 * Expense ratio analysis
 * Risk-adjusted performance ranking
 * Fund category distribution
+* Sharpe ratio analysis
 
 ---
 
 # Project Structure
 
-```text
+```text id="nmmgmd"
 Bluestock_capstone/
 │
 ├── data/
@@ -107,11 +133,13 @@ Bluestock_capstone/
 │   └── processed/
 │
 ├── notebooks/
-│   └── data_cleaning.ipynb
+│   ├── data_cleaning.ipynb
+│   └── EDA_Analysis.ipynb
 │
 ├── scripts/
 │   ├── etl_pipeline.py
-│   └── live_nav_fetch.py
+│   ├── live_nav_fetch.py
+│   └── create_sqlite_db.py
 │
 ├── sql/
 │   ├── schema.sql
@@ -119,6 +147,8 @@ Bluestock_capstone/
 │
 ├── reports/
 │   └── data_dictionary.md
+│
+├── dashboard/
 │
 ├── requirements.txt
 ├── README.md
@@ -139,32 +169,39 @@ Bluestock_capstone/
 * Duplicate removal
 * Date parsing
 * Datatype standardization
-* Metric validation
 * Missing value handling
+* Financial metric validation
 
 ## 3. Warehouse Transformation
 
 * Fact table creation
 * Dimension table generation
 * Schema alignment
+* Star schema modeling
 
 ## 4. Data Loading
 
 * Processed datasets loaded into MySQL warehouse
 
+## 5. EDA & Analytics
+
+* Trend analysis
+* Correlation analysis
+* Investor insights
+* Geographic analysis
+* Risk-performance analytics
+
 ---
 
-# Data Sources
+# Datasets Used
 
-This project uses:
-
-* Mutual fund metadata
-* Historical NAV data
-* Investor transaction datasets
-* Fund performance metrics
-
-Note:
-Actual source datasets and credentials are intentionally excluded from the repository for confidentiality and security purposes.
+| Dataset                   | Description                  |
+| ------------------------- | ---------------------------- |
+| fund_master.csv           | Mutual fund scheme metadata  |
+| nav_history.csv           | Historical NAV data          |
+| investor_transactions.csv | Investor transaction records |
+| scheme_performance.csv    | Fund performance metrics     |
+| portfolio_holdings.csv    | Portfolio sector allocation  |
 
 ---
 
@@ -172,7 +209,7 @@ Actual source datasets and credentials are intentionally excluded from the repos
 
 ## Clone Repository
 
-```bash
+```bash id="mvurxm"
 git clone <repository-url>
 cd Bluestock_capstone
 ```
@@ -181,7 +218,7 @@ cd Bluestock_capstone
 
 ## Install Dependencies
 
-```bash
+```bash id="wdwkxm"
 pip install -r requirements.txt
 ```
 
@@ -191,7 +228,7 @@ pip install -r requirements.txt
 
 Create database:
 
-```sql
+```sql id="rnbhfj"
 CREATE DATABASE bluestock_mf;
 ```
 
@@ -203,21 +240,33 @@ Run:
 
 ## Execute ETL Pipeline
 
-```bash
+```bash id="ynrxxz"
 python scripts/etl_pipeline.py
 ```
 
 ---
 
+## Run EDA Notebook
+
+Open:
+
+```text id="chpqcg"
+notebooks/EDA_Analysis.ipynb
+```
+
+Execute all cells sequentially.
+
+---
+
 # Security & Confidentiality
 
-The repository intentionally excludes:
+This repository intentionally excludes:
 
 * Database credentials
 * Local system paths
 * Raw confidential datasets
 * Database binary files
-* Environment configurations
+* Environment configuration files
 
 Database files such as:
 
@@ -232,11 +281,11 @@ are excluded using `.gitignore`.
 # Future Enhancements
 
 * Power BI dashboard integration
+* Streamlit analytics dashboard
 * Automated scheduled ETL
 * Incremental data loading
-* Streamlit analytics app
-* Advanced portfolio analytics
 * Cloud warehouse deployment
+* Portfolio optimization analytics
 
 ---
 
@@ -245,4 +294,3 @@ are excluded using `.gitignore`.
 Abdul Rehman Ansari
 
 BSc IT — Data Analytics & Engineering Project
-
