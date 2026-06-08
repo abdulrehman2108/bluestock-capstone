@@ -2,27 +2,40 @@
 
 ## Project Overview
 
-Bluestock Mutual Fund Analytics Warehouse is an end-to-end financial data engineering and analytics project designed to process, clean, transform, and analyze mutual fund datasets using a star schema warehouse architecture.
+Bluestock Mutual Fund Analytics Warehouse is an end-to-end financial analytics and data engineering project focused on mutual fund performance analysis, investor behavior analytics, and quantitative portfolio evaluation.
 
-The project focuses on:
+The project integrates:
 
-* NAV trend analysis
-* Mutual fund performance analytics
-* Investor transaction analysis
-* SIP inflow analysis
-* Risk-adjusted fund comparison
-* Sector allocation analysis
-* SQL-based business intelligence reporting
-
-The project workflow includes:
-
-* Data ingestion
-* Data cleaning and transformation
-* ETL pipeline creation
-* Star schema warehouse modeling
-* MySQL data loading
+* Data ingestion pipelines
+* ETL workflows
+* MySQL star-schema warehouse modeling
 * Exploratory Data Analysis (EDA)
-* Analytical SQL querying
+* Quantitative financial analytics
+* Portfolio performance benchmarking
+
+The system processes multiple mutual fund datasets including:
+
+* NAV history
+* Scheme performance
+* Investor transactions
+* Fund metadata
+* Portfolio holdings
+
+and transforms them into business-ready analytical insights.
+
+---
+
+# Objectives
+
+The project aims to:
+
+* Build a scalable mutual fund analytics pipeline
+* Clean and standardize raw financial datasets
+* Design a star-schema warehouse model
+* Perform quantitative portfolio analytics
+* Generate risk-adjusted fund rankings
+* Analyze investor and SIP behavior
+* Benchmark funds against market performance
 
 ---
 
@@ -30,102 +43,170 @@ The project workflow includes:
 
 | Technology       | Purpose                        |
 | ---------------- | ------------------------------ |
-| Python           | Data processing & ETL          |
+| Python           | Data engineering & analytics   |
 | Pandas           | Data cleaning & transformation |
-| NumPy            | Numerical computations         |
-| Matplotlib       | Data visualization             |
-| Seaborn          | Statistical visualization      |
-| Plotly           | Interactive visualizations     |
-| MySQL            | Data warehouse storage         |
-| SQLAlchemy       | Python ↔ MySQL integration     |
-| Jupyter Notebook | EDA & analysis                 |
-| SQL              | Analytical querying            |
+| NumPy            | Numerical computation          |
+| Matplotlib       | Visualization                  |
+| Seaborn          | Statistical plotting           |
+| Plotly           | Interactive charts             |
+| MySQL            | Data warehouse                 |
+| SQLAlchemy       | Database integration           |
+| SciPy            | Statistical regression         |
+| Jupyter Notebook | EDA & analytics                |
+| Git & GitHub     | Version control                |
 
 ---
 
 # Project Architecture
 
-```text id="tbdqqq"
-Raw CSV Data
-      ↓
-Data Cleaning & Transformation (Pandas)
-      ↓
-Warehouse-Ready Fact & Dimension Tables
-      ↓
+```text
+Raw CSV + API Data
+        ↓
+Data Cleaning & Validation
+        ↓
+Processed Analytical Datasets
+        ↓
 ETL Pipeline
-      ↓
+        ↓
 MySQL Star Schema Warehouse
-      ↓
-EDA & Analytical SQL Queries
-      ↓
-Dashboard / Reporting Layer
+        ↓
+EDA + Financial Analytics
+        ↓
+Business Insights & Reporting
 ```
 
 ---
 
-# Star Schema Design
+# Datasets Used
 
-## Dimension Tables
-
-* `dim_fund`
-* `dim_date`
-
-## Fact Tables
-
-* `fact_nav`
-* `fact_transactions`
-* `fact_performance`
-* `fact_aum`
+| Dataset                   | Description                      |
+| ------------------------- | -------------------------------- |
+| fund_master.csv           | Fund metadata and classification |
+| nav_history.csv           | Daily NAV history                |
+| investor_transactions.csv | Investor transaction behavior    |
+| scheme_performance.csv    | Fund performance metrics         |
+| portfolio_holdings.csv    | Sector allocation & holdings     |
 
 ---
 
-# Key Features
+# Warehouse Schema
 
-* Data cleaning and normalization using Pandas
-* Historical NAV trend analysis
-* SIP inflow trend analysis
-* Investor demographics analysis
-* Geographic investment distribution analysis
-* Correlation analysis between mutual funds
-* Sector allocation analytics
-* SQL-based KPI generation
-* Star schema warehouse implementation
+## Dimension Tables
+
+### dim_fund
+
+Contains:
+
+* fund metadata
+* categories
+* risk classification
+* scheme details
+
+### dim_date
+
+Contains:
+
+* calendar attributes
+* year/month/quarter mapping
+
+---
+
+## Fact Tables
+
+### fact_nav
+
+Stores:
+
+* daily NAV history
+* return analytics base
+
+### fact_transactions
+
+Stores:
+
+* SIPs
+* redemptions
+* investor activity
+
+### fact_performance
+
+Stores:
+
+* CAGR
+* Alpha
+* Beta
+* Sharpe Ratio
+* expense ratio metrics
+
+### fact_aum
+
+Stores:
+
+* Assets Under Management data
+
+---
+
+# ETL Pipeline
+
+The ETL pipeline performs:
+
+* Data ingestion
+* Datatype normalization
+* Missing-value handling
+* Duplicate removal
+* Financial metric validation
+* Warehouse-ready transformation
+* MySQL loading
 
 ---
 
 # Exploratory Data Analysis (EDA)
 
-The project includes:
+EDA includes:
 
-* 15+ visualizations
-* Plotly interactive charts
-* Seaborn statistical plots
-* Time-series NAV analysis
-* Correlation heatmaps
+* NAV trend analysis
+* SIP inflow trends
 * Investor demographic analysis
-* SIP inflow analysis
-* Sector allocation donut charts
+* Geographic investment distribution
+* Correlation heatmaps
+* Sector allocation analysis
+* Fund-house comparison
+* Portfolio concentration analysis
 
 ---
 
-# Analytical SQL Use Cases
+# Quantitative Financial Analytics
 
-The warehouse supports:
+The project implements advanced portfolio analytics:
 
-* Top funds by AUM
-* Monthly NAV trend analysis
-* SIP growth analysis
-* State-wise investment analysis
-* Expense ratio analysis
-* Risk-adjusted performance ranking
-* Fund category distribution
-* Sharpe ratio analysis
+| Metric                   | Purpose                       |
+| ------------------------ | ----------------------------- |
+| Daily Returns            | Time-series return generation |
+| CAGR                     | Long-term growth measurement  |
+| Sharpe Ratio             | Risk-adjusted returns         |
+| Sortino Ratio            | Downside-risk analysis        |
+| Alpha                    | Benchmark outperformance      |
+| Beta                     | Market sensitivity            |
+| Maximum Drawdown         | Crash-risk evaluation         |
+| Tracking Error           | Benchmark deviation           |
+| Composite Fund Scorecard | Multi-factor ranking          |
+
+---
+
+# Key Analytics Features
+
+* Risk-adjusted fund ranking
+* Benchmark-relative analytics
+* Portfolio risk evaluation
+* Volatility analysis
+* Drawdown analytics
+* Mutual fund scorecard system
 
 ---
 
 # Project Structure
 
-```text id="nmmgmd"
+```text
 Bluestock_capstone/
 │
 ├── data/
@@ -134,19 +215,20 @@ Bluestock_capstone/
 │
 ├── notebooks/
 │   ├── data_cleaning.ipynb
-│   └── EDA_Analysis.ipynb
+│   ├── EDA_Analysis.ipynb
+│   └── Performance_Analytics.ipynb
 │
 ├── scripts/
-│   ├── etl_pipeline.py
 │   ├── live_nav_fetch.py
-│   └── create_sqlite_db.py
+│   ├__ etl_pipeline.py
 │
 ├── sql/
 │   ├── schema.sql
 │   └── queries.sql
 │
 ├── reports/
-│   └── data_dictionary.md
+│   ├── data_dictionary.md
+│   └── charts/
 │
 ├── dashboard/
 │
@@ -157,59 +239,11 @@ Bluestock_capstone/
 
 ---
 
-# ETL Workflow
-
-## 1. Data Ingestion
-
-* Raw mutual fund datasets loaded using Pandas
-* Live NAV data fetched using API integration
-
-## 2. Data Cleaning
-
-* Duplicate removal
-* Date parsing
-* Datatype standardization
-* Missing value handling
-* Financial metric validation
-
-## 3. Warehouse Transformation
-
-* Fact table creation
-* Dimension table generation
-* Schema alignment
-* Star schema modeling
-
-## 4. Data Loading
-
-* Processed datasets loaded into MySQL warehouse
-
-## 5. EDA & Analytics
-
-* Trend analysis
-* Correlation analysis
-* Investor insights
-* Geographic analysis
-* Risk-performance analytics
-
----
-
-# Datasets Used
-
-| Dataset                   | Description                  |
-| ------------------------- | ---------------------------- |
-| fund_master.csv           | Mutual fund scheme metadata  |
-| nav_history.csv           | Historical NAV data          |
-| investor_transactions.csv | Investor transaction records |
-| scheme_performance.csv    | Fund performance metrics     |
-| portfolio_holdings.csv    | Portfolio sector allocation  |
-
----
-
-# Setup Instructions
+# Installation
 
 ## Clone Repository
 
-```bash id="mvurxm"
+```bash
 git clone <repository-url>
 cd Bluestock_capstone
 ```
@@ -218,74 +252,92 @@ cd Bluestock_capstone
 
 ## Install Dependencies
 
-```bash id="wdwkxm"
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-## Configure MySQL
+# MySQL Configuration
 
 Create database:
 
-```sql id="rnbhfj"
+```sql
 CREATE DATABASE bluestock_mf;
 ```
 
-Run:
+Run schema:
 
-* `sql/schema.sql`
+```sql
+SOURCE sql/schema.sql;
+```
 
 ---
 
-## Execute ETL Pipeline
+# Execute ETL Pipeline
 
-```bash id="ynrxxz"
+```bash
 python scripts/etl_pipeline.py
 ```
 
 ---
 
-## Run EDA Notebook
+# Run Jupyter Notebooks
+
+```bash
+jupyter notebook
+```
 
 Open:
 
-```text id="chpqcg"
-notebooks/EDA_Analysis.ipynb
-```
+* `EDA_Analysis.ipynb`
+* `Performance_Analytics.ipynb`
 
-Execute all cells sequentially.
+---
+
+# Key Deliverables
+
+| Deliverable                    | Description                    |
+| ------------------------------ | ------------------------------ |
+| Cleaned CSV datasets           | Processed analytical datasets  |
+| MySQL warehouse                | Star-schema implementation     |
+| SQL analytical queries         | Business insights              |
+| EDA notebook                   | Visualization & exploration    |
+| Performance analytics notebook | Quantitative finance analytics |
+| fund_scorecard.csv             | Final composite ranking        |
+| alpha_beta.csv                 | Regression metrics             |
+| README.md                      | Project documentation          |
 
 ---
 
 # Security & Confidentiality
 
-This repository intentionally excludes:
+The repository excludes:
 
-* Database credentials
-* Local system paths
-* Raw confidential datasets
-* Database binary files
-* Environment configuration files
+* database credentials
+* local system paths
+* temporary notebook checkpoints
+* binary database files
+* confidential environment variables
 
-Database files such as:
+The following are ignored using `.gitignore`:
 
 * `.db`
-* `.sqlite`
-* `.sqlitedb`
-
-are excluded using `.gitignore`.
+* `__pycache__/`
+* `.ipynb_checkpoints/`
+* `.env`
 
 ---
 
 # Future Enhancements
 
-* Power BI dashboard integration
-* Streamlit analytics dashboard
-* Automated scheduled ETL
-* Incremental data loading
+* Power BI integration
+* Streamlit dashboard deployment
+* Automated ETL scheduling
+* Real-time NAV ingestion
 * Cloud warehouse deployment
-* Portfolio optimization analytics
+* Portfolio optimization models
+* Advanced factor modeling
 
 ---
 
@@ -293,4 +345,4 @@ are excluded using `.gitignore`.
 
 Abdul Rehman Ansari
 
-BSc IT — Data Analytics & Engineering Project
+BSc IT — Data Engineering & Financial Analytics Project
